@@ -38,6 +38,13 @@ func main() {
 	commands.Register("register", config.HandleRegister)
 	commands.Register("reset", config.HandleReset)
 	commands.Register("users", config.HandleUsers)
+	commands.Register("agg", config.HandleAgg)
+	commands.Register("addfeed", config.MiddlewareLoggedIn(config.HandleAddFeed))
+	commands.Register("feeds", config.HandleFeeds)
+	commands.Register("follow", config.MiddlewareLoggedIn(config.HandleFollow))
+	commands.Register("following", config.MiddlewareLoggedIn(config.HandleFollowing))
+	commands.Register("unfollow", config.MiddlewareLoggedIn(config.HandleUnfollow))
+	commands.Register("browse", config.MiddlewareLoggedIn(config.HandleBrowse))
 	args := os.Args
 
 	if len(args) < 2 {
